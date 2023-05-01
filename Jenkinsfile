@@ -15,7 +15,9 @@
         stage('create docker container'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]){
+                   withCredentials([string(credentialsId: '', variable: 'dockerhub')]) {
+    // some block
+}
                         sh 'docker login -u tejabadugu -p ${dockerhub}'
                     }
                        sh 'docker tag images:2.0 tejabadugu/nodejs:2.0'
