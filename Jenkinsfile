@@ -16,10 +16,10 @@
             steps{
                 script{
                     withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]){
-                        sh 'docker login -u veeraboinaashok0124 -p ${dockerhub}'
+                        sh 'docker login -u tejabadugu -p ${dockerhub}'
                     }
-                       sh 'docker tag images:2.0 veeraboinaashok0124/nodejs:2.0'
-                       sh 'docker push veeraboinaashok0124/nodejs:2.0'
+                       sh 'docker tag images:2.0 tejabadugu/nodejs:2.0'
+                       sh 'docker push tejabadugu/nodejs:2.0'
                        sh 'docker container run -d -p 3000:3000 images:2.0 npm run start'
                 }
             }
