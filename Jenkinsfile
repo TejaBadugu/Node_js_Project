@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('checkout code'){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mirza57865/Node_js_Project']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/TejaBadugu/Node_js_Project.git']])
             }
         }
         stage('Build docker image'){
@@ -16,11 +16,11 @@ pipeline{
         stage('create docker container'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'e39c6aee-4e98-4db1-9be4-37ce0520e5c5', variable: 'sohail')]) {
-                        sh 'docker login -u mirza57865 -p ${sohail}'
+                    withCredentials([string(credentialsId: 'e39c6aee-4e98-4db1-9be4-37ce0520e5c5', variable: 'tejabadugu')]) {
+                        sh 'docker login -u tejabadugu -p ${tejabadugu}'
                     }
-                       sh 'docker tag images:2.0 abbasmarolix/nodejs:2.0'
-                       sh 'docker push abbasmarolix/nodejs:2.0'
+                       sh 'docker tag images:2.0 tejabadugu/nodejs:2.0'
+                       sh 'docker push tejabadugu/nodejs:2.0'
                        sh 'docker container run -d -p 3000:3000 images:2.0 npm run start'
                 }
             }
