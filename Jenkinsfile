@@ -1,5 +1,5 @@
-pipeline{    
-agent any
+pipeline{
+    agent any
     stages{
         stage('checkout code'){
             steps{
@@ -16,15 +16,14 @@ agent any
         stage('create docker container'){
             steps{
                 script{
-                  withCredentials([string(credentialsId: 'teja1', variable: 'teja1')]) {
-}
-}
-                        sh 'docker login -u tejabadugu -p ${dockerhub}'
+                    withCredentials([string(credentialsId: 'teja1', variable: 'teja1')]){
+                        sh 'docker login -u tejabadugu -p ${teja1}'
                     }
                        sh 'docker tag images:3.0 tejabadugu/nodejs:3.0'
                        sh 'docker push tejabadugu/nodejs:3.0'
                        sh 'docker container run -d -p 3000:3000 images:3.0 npm run start'
                 }
             }
+        }
+    }
 }
-    
